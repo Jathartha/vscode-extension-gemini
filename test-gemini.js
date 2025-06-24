@@ -1,8 +1,8 @@
 // Test script for Gemini API
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-// Gemini API key
-const apiKey = "AIzaSyCSf6lEUwpSIxPXmMVnT0qPfcsgTWH9oU4";
+// Gemini API key (insert your own key here)
+const apiKey = "YOUR_GEMINI_API_KEY_HERE";
 
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
