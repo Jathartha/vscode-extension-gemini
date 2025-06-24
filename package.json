@@ -1,0 +1,95 @@
+{
+  "name": "ai-code-assistant",
+  "displayName": "AI Code Assistant",
+  "description": "A VS Code extension with React-based web chat interface for AI-powered code assistance",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:ai-code-assistant.openChat"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-code-assistant.openChat",
+        "title": "Open AI Code Assistant"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "ai-code-assistant.openChat"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "AI Code Assistant",
+      "properties": {
+        "istant.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Google Gemini API key for AI code assistance"
+        },
+        "aiCodeAssistant.model": {
+          "type": "string",
+          "default": "gemini-1.5-flash",
+          "enum": [
+            "gemini-1.5-flash",
+            "gemini-1.5-pro",
+            "gemini-1.0-pro"
+          ],
+          "description": "Gemini model to use for code assistance"
+        },
+        "aiCodeAssistant.maxTokens": {
+          "type": "number",
+          "default": 2000,
+          "description": "Maximum tokens for AI responses"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "npm run compile:extension && npm run compile:webview",
+    "compile:extension": "tsc -p ./",
+    "compile:webview": "webpack --mode production",
+    "watch": "npm run watch:extension & npm run watch:webview",
+    "watch:extension": "tsc -watch -p ./",
+    "watch:webview": "webpack --mode development --watch",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "css-loader": "^6.8.0",
+    "eslint": "^8.39.0",
+    "glob": "^10.2.6",
+    "mocha": "^10.2.0",
+    "style-loader": "^3.3.0",
+    "ts-loader": "^9.4.0",
+    "typescript": "^5.0.4",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.2.1",
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^15.6.1"
+  }
+}
